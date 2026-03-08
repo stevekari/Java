@@ -1,0 +1,55 @@
+                +----------------------+
+                |     CoffeeType       |
+                +----------------------+
+                | + totalAmount()      |
+                | + message()          |
+                | + amount()           |
+                +----------+-----------+
+                           ^
+                           |
+     -------------------------------------------------
+     |                     |                         |
++------------+     +---------------+        +----------------+
+|  Espresso  |     |  Cappuccino   |        |   Americano    |
++------------+     +---------------+        +----------------+
+| - size     |     | - size        |        | - size         |
++------------+     +---------------+        +----------------+
+| overrides  |     | overrides     |        | overrides      |
++------------+     +---------------+        +----------------+
+
++----------------------+
+|     Ingredients      |
++----------------------+
+| - water              |
+| - coffeeBeans        |
+| - milk               |
++----------------------+
+
++----------------------+
+|    CafeService       |
++----------------------+
+| + prepareCoffeeText  |
+| + prepareCoffeeJson  |
+| - createCoffee       |
++----------------------+
+
++----------------------+
+|   IngredientService  |
++----------------------+
+| + getStatus()        |
+| + use()              |
+| + refill()           |
+| + autoRefill()       |
++----------------------+
+
+
+
+   [Browser UI] ----> [WebController] ----> [CafeService] ----> [CoffeeType]
+         |                     |                     |
+         |                     |                     +--> Espresso
+         |                     |                     +--> Cappuccino
+         |                     |                     +--> Americano
+         |
+         +----> [Status Page] ----> [IngredientService] ----> [Ingredients]
+
+   [REST Client] ----> [CoffeeController] ----> [CafeService]
