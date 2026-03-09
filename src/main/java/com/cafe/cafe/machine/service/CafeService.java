@@ -9,6 +9,7 @@ import com.cafe.cafe.machine.model.Americano;
 import com.cafe.cafe.machine.model.Cappuccino;
 import com.cafe.cafe.machine.model.CoffeeType;
 import com.cafe.cafe.machine.model.Espresso;
+import com.cafe.cafe.machine.model.Latte;
 
 @Service
 public class CafeService {
@@ -41,6 +42,8 @@ public class CafeService {
 
             case "americano":
                 return new Americano(size);
+            case "latte":
+                return new Latte(size);
 
             default:
                 throw new IllegalArgumentException("Unknown coffee type");

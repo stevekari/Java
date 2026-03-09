@@ -31,10 +31,4 @@ public class WebController {
         return "result";
     }
 
-    // @GetMapping("/status")
-    // public String status(Model model) {
-    // model.addAttribute("status", ingredientService.getStatus());
-    // return "status";
-    // }
-
 }

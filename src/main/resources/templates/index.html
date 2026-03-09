@@ -68,7 +68,7 @@
       <div class="screen-wrap">
         <div class="screen-label">// STATUS</div>
         <div class="screen-text" id="display">
-          READY TO BREW<span class="cursor"></span>
+          READY TO TAKE COFFEE<span class="cursor"></span>
         </div>
       </div>
 
@@ -91,6 +91,7 @@
               <option value="espresso">Espresso</option>
               <option value="cappuccino">Cappuccino</option>
               <option value="americano">Americano</option>
+              <option value="latte">Latte</option>
             </select>
           </div>
           <div class="selector-group">
@@ -103,7 +104,9 @@
         </div>
 
         <div class="brew-wrap">
-          <button type="submit" class="brew-btn" id="brewBtn">BREW NOW</button>
+          <button type="submit" class="brew-btn" id="brewBtn">
+            COFFEE NOW
+          </button>
         </div>
       </form>
       <!-- ★ END FORM ★ -->
@@ -153,7 +156,7 @@
     </div>
     <!-- /.machine -->
 
-    <script>
+    <!-- <script>
       // Play brew animation THEN submit to Spring Boot
       document
         .getElementById("brewForm")
@@ -202,6 +205,6 @@
           // fire the real POST to /make after animation
           setTimeout(() => this.submit(), 1700);
         });
-    </script>
+    </script> -->
   </body>
 </html>
