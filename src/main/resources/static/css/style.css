@@ -591,3 +591,39 @@ h1.brand span {
   box-shadow: 0 0 6px var(--accent);
   animation: pulse-led 3.2s infinite;
 }
+
+.cafeList {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.left_cafe,
+.right_cafe {
+  display: inline-block;
+  width: 170px;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.left_cafe button,
+.right_cafe button {
+  padding: 10px;
+  width: 150px;
+  margin: 10px;
+  border-radius: 10px;
+  text-align: start;
+  font-size: 20px;
+  text-transform: uppercase;
+  border: none;
+  background-color: var(--accent);
+  color: white;
+  box-shadow: 1px 1px 2px #c8c8c8;
+  transition: all 0.5s background !important;
+  cursor: pointer;
+}
+
+.left_cafe button:hover,
+.right_cafe button:hover {
+  background-color: var(--green-led);
+}

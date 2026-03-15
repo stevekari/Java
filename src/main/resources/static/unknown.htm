@@ -1,0 +1,434 @@
+<!-- <div class="selector-group">
+            <label for="type">Coffee Type</label>
+            <select id="type" name="type">
+              <option value="espresso">Espresso</option>
+              <option value="cappuccino">Cappuccino</option>
+              <option value="americano">Americano</option>
+              <option value="latte">Latte</option>
+            </select>
+          </div> -->
+
+<div class="selector-group">
+  <label for="size">Size</label>
+  <select id="size" name="size">
+    <option value="short">Short</option>
+    <option value="long">Long</option>
+  </select>
+</div>
+
+<div class="brew-wrap">
+  <button type="submit" class="brew-btn" id="brewBtn">COFFEE NOW</button>
+</div>
+
+<!-- Nested form  -->
+
+<form th:action="@{/make}" method="post" class="brew-form" id="brewForm">
+  <div class="selector-row">
+    <input type="hidden" name="type" id="coffeeType" />
+
+    <form th:action="@{/select-size}" method="post">
+      <div class="selector-group">
+        <label for="size">Size</label>
+        <select id="size" name="size">
+          <option value="short">Short</option>
+          <option value="long">Long</option>
+          <option value="long">Grande</option>
+        </select>
+      </div>
+
+      <!-- <button type="submit">SET SIZE</button> -->
+    </form>
+  </div>
+
+  <div class="cafeList">
+    <form th:action="@{/select-drink}" method="post">
+      <div class="left_cafe">
+        <button type="button" name="drink" data-type="espresso">
+          Espresso
+        </button>
+        <button
+          type="button"
+          value="cappuccino"
+          name="drink"
+          data-type="cappuccino"
+        >
+          Cappuccino
+        </button>
+        <button
+          type="button"
+          value="americano"
+          name="drink"
+          data-type="americano"
+        >
+          Americano
+        </button>
+      </div>
+      <div class="right_cafe">
+        <button type="button" value="cartado" name="drink" data-type="cartado">
+          Cortado
+        </button>
+        <button
+          type="button"
+          value="macchiato"
+          name="drink"
+          data-type="macchiato"
+        >
+          Macchiato
+        </button>
+        <button type="button" value="mocha" name="drink" data-type="mocha">
+          Mocha
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <form th:action="@{/brew}" method="post">
+    <div class="brew-wrap">
+      <button
+        type="submit"
+        class="brew-btn"
+        id="brewBtn"
+        th:disabled="${selectedDrink == null}"
+      >
+        COFFEE NOW
+      </button>
+    </div>
+    <!-- <button type="submit">COFFEE NOW</button> -->
+  </form>
+</form>
+
+<!-- // @PostMapping("/brew")
+    // public String brewCoffee(Model model) {
+    // // call your service to brew the coffee
+    // String coffeeName = selectedDrink;
+    // String price = "$3.50";
+    // model.addAttribute("message", "Brewing your coffee...");
+    // model.addAttribute("waterOk", true);
+    // model.addAttribute("beansOk", false);
+    // model.addAttribute("milkOk", true);
+    // model.addAttribute("selectedDrink", selectedDrink);
+    // model.addAttribute("selectedSize", selectedSize);
+
+    // model.addAttribute("result", coffeeName + " | " + price);
+
+    // return "result";
+    // } -->
+
+<!-- <!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <title>Café Machine</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="mb-4">Café Machine</h1>
+
+      <form action="/make" method="post" class="card p-4 shadow">
+        <div class="mb-3">
+          <label class="form-label">Coffee Type</label>
+          <select name="type" class="form-select">
+            <option value="espresso">Espresso</option>
+            <option value="cappuccino">Cappuccino</option>
+            <option value="americano">Americano</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Size</label>
+          <select name="size" class="form-select">
+            <option value="short">Short</option>
+            <option value="long">Long</option>
+          </select>
+        </div>
+
+        <button class="btn btn-success">Make Coffee</button>
+      </form>
+    </div>
+  </body>
+</html> -->
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CafeMachine — Brew</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <h1 class="brand">CAFÉ <span>MACHINE</span></h1>
+
+    <div class="machine">
+      <!-- TOP CHROME -->
+      <div class="machine-top">
+        <div class="logo-plate">STEVE KK</div>
+        <div class="leds">
+          <div class="led green" title="Power ON"></div>
+          <div class="led amber" title="Heating"></div>
+        </div>
+      </div>
+
+      <!-- SCREEN -->
+      <div class="screen-wrap">
+        <div class="screen-label">// STATUS</div>
+        <div class="screen-text" id="display">
+          READY TO TAKE COFFEE<span class="cursor"></span>
+        </div>
+      </div>
+
+      <!-- DECORATIVE RIVETS -->
+      <div class="rivets">
+        <div class="rivet"></div>
+        <div class="rivet"></div>
+        <div class="rivet"></div>
+        <div class="rivet"></div>
+        <div class="rivet"></div>
+        <div class="rivet"></div>
+      </div>
+
+      <!-- ★ SPRING BOOT FORM — posts to WebController @PostMapping("/make") ★ -->
+      <form th:action="@{/make}" method="post" class="brew-form" id="brewForm">
+        <div class="selector-row">
+          <input type="hidden" name="type" id="coffeeType" />
+
+          <form th:action="@{/select-size}" method="post">
+            <div class="selector-group">
+              <label for="size">Size</label>
+              <select id="size" name="size">
+                <option value="short">Short</option>
+                <option value="long">Long</option>
+                <option value="long">Grande</option>
+              </select>
+            </div>
+
+            <!-- <button type="submit">SET SIZE</button> -->
+          </form>
+        </div>
+
+        <div class="cafeList">
+          <form th:action="@{/select-drink}" method="post">
+            <div class="left_cafe">
+              <button type="button" name="drink" data-type="espresso">
+                Espresso
+              </button>
+              <button
+                type="button"
+                value=""
+                name="drink"
+                data-type="cappuccino"
+              >
+                Cappuccino
+              </button>
+              <button
+                type="button"
+                value="americano"
+                name="drink"
+                data-type="americano"
+              >
+                Americano
+              </button>
+            </div>
+            <div class="right_cafe">
+              <button
+                type="button"
+                value="cartado"
+                name="drink"
+                data-type="cartado"
+              >
+                Cortado
+              </button>
+              <button
+                type="button"
+                value="macchiato"
+                name="drink"
+                data-type="macchiato"
+              >
+                Macchiato
+              </button>
+              <button
+                type="button"
+                value="mocha"
+                name="drink"
+                data-type="mocha"
+              >
+                Mocha
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <form th:action="@{/brew}" method="post">
+          <div class="brew-wrap">
+            <button
+              type="submit"
+              class="brew-btn"
+              id="brewBtn"
+              th:disabled="${selectedDrink == null}"
+            >
+              COFFEE NOW
+            </button>
+          </div>
+          <!-- <button type="submit">COFFEE NOW</button> -->
+        </form>
+      </form>
+      <!-- ★ END FORM ★ -->
+
+      <!-- SPOUT -->
+      <div class="spout-area">
+        <div class="spout-head"></div>
+        <div class="spout-neck"></div>
+        <div class="drips" id="drips">
+          <div class="drip"></div>
+          <div class="drip"></div>
+          <div class="drip"></div>
+        </div>
+      </div>
+
+      <!-- CUP + TRAY -->
+      <div class="tray-wrap">
+        <div class="cup-stage">
+          <div class="cup-column">
+            <div class="steam-row" id="steam">
+              <div class="steam"></div>
+              <div class="steam"></div>
+              <div class="steam"></div>
+            </div>
+            <div class="cup" id="cup"></div>
+          </div>
+        </div>
+        <div class="tray"></div>
+        <div class="tray-base"></div>
+      </div>
+
+      <!-- STATUS BAR -->
+      <div class="status-bar">
+        <div class="status-item">
+          <div class="status-dot g"></div>
+          WATER OK
+        </div>
+        <div class="status-item">
+          <div class="status-dot o"></div>
+          BEANS OK
+        </div>
+        <div class="status-item">
+          <div class="status-dot g"></div>
+          MILK OK
+        </div>
+      </div>
+    </div>
+    <!-- /.machine -->
+
+    <!-- <script>
+      // Play brew animation THEN submit to Spring Boot
+      document
+        .getElementById("brewForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const type = document.getElementById("type").value;
+          const display = document.getElementById("display");
+
+          // typewriter on screen
+          const msg = "BREWING " + type.toUpperCase() + "...";
+          display.innerHTML = "";
+          let i = 0;
+          const iv = setInterval(() => {
+            display.innerHTML =
+              msg.slice(0, i) + '<span class="cursor"></span>';
+            if (i++ >= msg.length) clearInterval(iv);
+          }, 42);
+
+          // drips from spout
+          document.querySelectorAll(".drip").forEach((d) => {
+            d.classList.remove("flowing");
+            void d.offsetWidth;
+          });
+          setTimeout(
+            () =>
+              document
+                .querySelectorAll(".drip")
+                .forEach((d) => d.classList.add("flowing")),
+            100,
+          );
+
+          // cup rises
+          setTimeout(
+            () => document.getElementById("cup").classList.add("visible"),
+            450,
+          );
+
+          // steam
+          setTimeout(() => {
+            document.querySelectorAll(".steam").forEach((s) => {
+              void s.offsetWidth;
+              s.classList.add("rising");
+            });
+          }, 950);
+
+          // fire the real POST to /make after animation
+          setTimeout(() => this.submit(), 1700);
+        });
+    </script> -->
+    <script>
+      const display = document.getElementById("display");
+      const typeInput = document.getElementById("coffeeType");
+
+      function typeWriter(text) {
+        display.innerHTML = "";
+        let i = 0;
+
+        const interval = setInterval(() => {
+          display.innerHTML = text.slice(0, i) + '<span class="cursor"></span>';
+          i++;
+          if (i > text.length) clearInterval(interval);
+        }, 40);
+      }
+
+      document.querySelectorAll(".cafeList button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const type = btn.dataset.type;
+
+          // 1. Save selected type for Spring Boot
+          typeInput.value = type;
+
+          // 2. Animate screen
+          typeWriter(type.toUpperCase() + " SELECTED");
+
+          // 3. Optional: highlight selected button
+          document
+            .querySelectorAll(".cafeList button")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+        });
+      });
+
+      // Prevent form submission without selecting a type
+      document.getElementById("brewForm").addEventListener("submit", (e) => {
+        if (!typeInput.value) {
+          e.preventDefault();
+          typeWriter("SELECT A COFFEE FIRST");
+        }
+      });
+
+      const brewBtn = document.getElementById("brewBtn");
+      brewBtn.disabled = true;
+
+      document.querySelectorAll("button[name='drink']").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          brewBtn.disabled = false;
+        });
+      });
+    </script>
+  </body>
+</html>
