@@ -13,7 +13,7 @@ public class CafeMachine {
     public String makeCoffee(CoffeeType coffee) {
         System.out.println(coffee.message());
         System.out.println("Total: " + coffee.totalAmount());
-        return "";
+        return "index";
 
     }
 

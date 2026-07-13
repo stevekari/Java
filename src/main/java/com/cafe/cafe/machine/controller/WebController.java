@@ -50,14 +50,17 @@ public class WebController {
     }
 
     @PostMapping("/brew")
-    public String brewCoffee(Model model) {
+    public String brewCoffee(@RequestParam("type") String type,
+            @RequestParam("size") String size,
+            Model model) {
 
-        String coffeeName = selectedDrink; // now NOT null
+        // Create a nice display string
+        String coffeeName = type.substring(0, 1).toUpperCase() + type.substring(1); // Capitalize
         String price = "€1.50";
 
-        model.addAttribute("result", coffeeName + " | " + price);
+        // This combined string is what result.html uses
+        model.addAttribute("result", coffeeName + " (" + size + ") | " + price);
 
         return "result";
     }
-
 }

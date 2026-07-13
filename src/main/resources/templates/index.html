@@ -1,166 +1,165 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CafeMachine — Brew</title>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CafeMachine — Brew</title>
 
-  <body>
-    <h1 class="brand">CAFÉ <span>MACHINE</span></h1>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
 
-    <div class="machine">
-      <!-- TOP -->
-      <div class="machine-top">
-        <div class="logo-plate">STEVE KK</div>
-        <div class="leds">
-          <div class="led green"></div>
-          <div class="led amber"></div>
-        </div>
-      </div>
+<body>
+  <h1 class="brand">CAFÉ <span>MACHINE</span></h1>
 
-      <!-- SCREEN -->
-      <div class="screen-wrap">
-        <div class="screen-label">// STATUS</div>
-        <div class="screen-text" id="display">
-          READY TO TAKE COFFEE<span class="cursor"></span>
-        </div>
-      </div>
-
-      <!-- RIVETS -->
-      <div class="rivets">
-        <div class="rivet"></div>
-        <div class="rivet"></div>
-        <div class="rivet"></div>
-        <div class="rivet"></div>
-        <div class="rivet"></div>
-        <div class="rivet"></div>
-      </div>
-
-      <!-- ⭐ SINGLE FORM ⭐ -->
-      <form th:action="@{/brew}" method="post" class="brew-form" id="brewForm">
-        <!-- Hidden input that stores selected drink -->
-        <input type="hidden" name="type" id="coffeeType" />
-
-        <!-- SIZE SELECTOR -->
-        <div class="selector-row">
-          <div class="selector-group">
-            <label for="size">Size</label>
-            <select id="size" name="size">
-              <option value="short">Short</option>
-              <option value="long">Long</option>
-              <option value="grande">Grande</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- COFFEE BUTTONS -->
-        <div class="cafeList">
-          <div class="left_cafe">
-            <button type="button" data-type="espresso">Espresso</button>
-            <button type="button" data-type="cappuccino">Cappuccino</button>
-            <button type="button" data-type="americano">Americano</button>
-          </div>
-
-          <div class="right_cafe">
-            <button type="button" data-type="cortado">Cortado</button>
-            <button type="button" data-type="macchiato">Macchiato</button>
-            <button type="button" data-type="mocha">Mocha</button>
-          </div>
-        </div>
-
-        <!-- BREW BUTTON -->
-        <div class="brew-wrap">
-          <button type="submit" class="brew-btn" id="brewBtn" disabled>
-            COFFEE NOW
-          </button>
-        </div>
-      </form>
-      <!-- END SINGLE FORM -->
-
-      <!-- SPOUT + CUP -->
-      <div class="spout-area">
-        <div class="spout-head"></div>
-        <div class="spout-neck"></div>
-      </div>
-
-      <div class="tray-wrap">
-        <div class="cup-stage">
-          <div class="cup-column">
-            <div class="steam-row" id="steam">
-              <div class="steam"></div>
-              <div class="steam"></div>
-              <div class="steam"></div>
-            </div>
-            <div class="cup" id="cup"></div>
-          </div>
-        </div>
-        <div class="tray"></div>
-        <div class="tray-base"></div>
-      </div>
-
-      <!-- STATUS BAR -->
-      <div class="status-bar">
-        <div class="status-item">
-          <div class="status-dot g"></div>
-          WATER OK
-        </div>
-        <div class="status-item">
-          <div class="status-dot o"></div>
-          BEANS OK
-        </div>
-        <div class="status-item">
-          <div class="status-dot g"></div>
-          MILK OK
-        </div>
+  <div class="machine">
+    <!-- TOP -->
+    <div class="machine-top">
+      <div class="logo-plate">STEVE KK</div>
+      <div class="leds">
+        <div class="led green"></div>
+        <div class="led amber"></div>
       </div>
     </div>
 
-    <script>
-      const display = document.getElementById("display");
-      const typeInput = document.getElementById("coffeeType");
-      const brewBtn = document.getElementById("brewBtn");
+    <!-- SCREEN -->
+    <div class="screen-wrap">
+      <div class="screen-label">// STATUS</div>
+      <div class="screen-text" id="display">
+        READY TO TAKE COFFEE<span class="cursor"></span>
+      </div>
+    </div>
 
-      function typeWriter(text) {
-        display.innerHTML = "";
-        let i = 0;
-        const interval = setInterval(() => {
-          display.innerHTML = text.slice(0, i) + '<span class="cursor"></span>';
-          i++;
-          if (i > text.length) clearInterval(interval);
-        }, 40);
+    <!-- RIVETS -->
+    <div class="rivets">
+      <div class="rivet"></div>
+      <div class="rivet"></div>
+      <div class="rivet"></div>
+      <div class="rivet"></div>
+      <div class="rivet"></div>
+      <div class="rivet"></div>
+    </div>
+
+    <!-- ⭐ SINGLE FORM ⭐ -->
+    <form th:action="@{/brew}" method="post" class="brew-form" id="brewForm">
+      <!-- Hidden input that stores selected drink -->
+      <input type="hidden" name="type" id="coffeeType" />
+
+      <!-- SIZE SELECTOR -->
+      <div class="selector-row">
+        <div class="selector-group">
+          <label for="size">Size</label>
+          <select id="size" name="size">
+            <option value="short">Short</option>
+            <option value="long">Long</option>
+            <option value="grande">Grande</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- COFFEE BUTTONS -->
+      <div class="cafeList">
+        <div class="left_cafe">
+          <button type="button" data-type="espresso">Espresso</button>
+          <button type="button" data-type="cappuccino">Cappuccino</button>
+          <button type="button" data-type="americano">Americano</button>
+        </div>
+
+        <div class="right_cafe">
+          <button type="button" data-type="cortado">Cortado</button>
+          <button type="button" data-type="macchiato">Macchiato</button>
+          <button type="button" data-type="mocha">Mocha</button>
+        </div>
+      </div>
+
+      <!-- BREW BUTTON -->
+      <div class="brew-wrap">
+        <button type="submit" class="brew-btn" id="brewBtn" disabled>COFFEE NOW</button>
+      </div>
+    </form>
+    <!-- END SINGLE FORM -->
+
+    <!-- SPOUT + CUP -->
+    <div class="spout-area">
+      <div class="spout-head"></div>
+      <div class="spout-neck"></div>
+    </div>
+
+    <div class="tray-wrap">
+      <div class="cup-stage">
+        <div class="cup-column">
+          <div class="steam-row" id="steam">
+            <div class="steam"></div>
+            <div class="steam"></div>
+            <div class="steam"></div>
+          </div>
+          <div class="cup" id="cup"></div>
+        </div>
+      </div>
+      <div class="tray"></div>
+      <div class="tray-base"></div>
+    </div>
+
+    <!-- STATUS BAR -->
+    <div class="status-bar">
+      <div class="status-item">
+        <div class="status-dot g"></div>
+        WATER OK
+      </div>
+      <div class="status-item">
+        <div class="status-dot o"></div>
+        BEANS OK
+      </div>
+      <div class="status-item">
+        <div class="status-dot g"></div>
+        MILK OK
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById("display");
+    const typeInput = document.getElementById("coffeeType");
+    const brewBtn = document.getElementById("brewBtn");
+
+    function typeWriter(text) {
+      display.innerHTML = "";
+      let i = 0;
+      const interval = setInterval(() => {
+        display.innerHTML = text.slice(0, i) + '<span class="cursor"></span>';
+        i++;
+        if (i > text.length) clearInterval(interval);
+      }, 40);
+    }
+
+    // Coffee selection
+    document.querySelectorAll(".cafeList button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const type = btn.dataset.type;
+
+        typeInput.value = type; // store for Spring Boot
+        brewBtn.disabled = false; // enable brew button
+
+        typeWriter(type.toUpperCase() + " SELECTED");
+
+        document
+          .querySelectorAll(".cafeList button")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+      });
+    });
+
+    // Prevent brewing without selecting a drink
+    document.getElementById("brewForm").addEventListener("submit", (e) => {
+      if (!typeInput.value) {
+        e.preventDefault();
+        typeWriter("SELECT A COFFEE FIRST");
       }
+    });
+  </script>
+</body>
 
-      // Coffee selection
-      document.querySelectorAll(".cafeList button").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const type = btn.dataset.type;
-
-          typeInput.value = type; // store for Spring Boot
-          brewBtn.disabled = false; // enable brew button
-
-          typeWriter(type.toUpperCase() + " SELECTED");
-
-          document
-            .querySelectorAll(".cafeList button")
-            .forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-        });
-      });
-
-      // Prevent brewing without selecting a drink
-      document.getElementById("brewForm").addEventListener("submit", (e) => {
-        if (!typeInput.value) {
-          e.preventDefault();
-          typeWriter("SELECT A COFFEE FIRST");
-        }
-      });
-    </script>
-  </body>
 </html>

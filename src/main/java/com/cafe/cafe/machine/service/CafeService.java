@@ -34,20 +34,6 @@ public class CafeService {
         return coffee.message() + "| Total" + coffee.totalAmount();
     }
 
-    // private CoffeeType createCoffee(String type, String size) {
-    // CoffeeCategory category = CoffeeCategory.fromString(type);
-
-    // return switch (category) {
-    // case ESPRESSO -> new Espresso(size);
-    // case CAPPUCCINO -> new Cappuccino(size);
-    // case AMERICANO -> new Americano(size);
-    // case AMERICANO -> new Americano(size);
-    // case AMERICANO -> new Americano(size);
-    // default -> throw new IllegalArgumentException("Unexpected value: " +
-    // category);
-    // };
-    // }
-
     private CoffeeType createCoffee(String type, String size) {
 
         if (type == null)

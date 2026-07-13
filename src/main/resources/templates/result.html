@@ -1,100 +1,100 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CafeMachine — Your Coffee</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" th:href="@{/css/result.css}" />
-  </head>
-  <body>
-    <h1 class="brand">CAFÉ <span>MACHINE</span></h1>
 
-    <div class="machine">
-      <!-- TOP CHROME -->
-      <div class="machine-top">
-        <div class="logo-plate">STEVE KK</div>
-        <div class="leds">
-          <div class="led green" title="Done!"></div>
-          <div class="led amber" title="Heating"></div>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CafeMachine — Your Coffee</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow:wght@300;400;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" th:href="@{/css/result.css}" />
+</head>
+
+<body>
+  <h1 class="brand">CAFÉ <span>MACHINE</span></h1>
+
+  <div class="machine">
+    <!-- TOP CHROME -->
+    <div class="machine-top">
+      <div class="logo-plate">STEVE KK</div>
+      <div class="leds">
+        <div class="led green" title="Done!"></div>
+        <div class="led amber" title="Heating"></div>
       </div>
+    </div>
 
-      <!-- SCREEN — result injected by Spring Boot via Thymeleaf ${result} -->
+    <!-- SCREEN — result injected by Spring Boot via Thymeleaf ${result} -->
+    <div class="screen-wrap">
+
+
       <div class="screen-wrap">
         <div class="screen-label">Thanks for buying coffee</div>
 
-        <!-- <div
-          class="screen-result"
-          th:text="${#strings.substringBefore(result, ' | ')}"
-        ></div> -->
+        <div class="screen-text" th:text="${#strings.substringBefore(result, ' | ')}"></div>
 
-        <div
-          class="screen-price"
-          th:text="${#strings.substringAfter(result, ' | ')}"
-        ></div>
+        <div class="screen-price" th:text="${#strings.substringAfter(result, ' | ')}"></div>
       </div>
+      <!-- <div class="screen-price" th:text="${#strings.substringAfter(result, ' | ')}"></div> -->
+    </div>
 
-      <!-- RIVETS -->
-      <div class="rivets">
-        <div class="rivet"></div>
-        <div class="rivet"></div>
-        <div class="rivet"></div>
-        <div class="rivet"></div>
-        <div class="rivet"></div>
-        <div class="rivet"></div>
-      </div>
+    <!-- RIVETS -->
+    <div class="rivets">
+      <div class="rivet"></div>
+      <div class="rivet"></div>
+      <div class="rivet"></div>
+      <div class="rivet"></div>
+      <div class="rivet"></div>
+      <div class="rivet"></div>
+    </div>
 
-      <!-- SPOUT -->
-      <div class="spout-area">
-        <div class="spout-head"></div>
-        <div class="spout-neck"></div>
-      </div>
+    <!-- SPOUT -->
+    <div class="spout-area">
+      <div class="spout-head"></div>
+      <div class="spout-neck"></div>
+    </div>
 
-      <!-- CUP fully filled + steam always on -->
-      <div class="tray-wrap">
-        <div class="cup-stage">
-          <div class="cup-column">
-            <div class="steam-row">
-              <div class="steam"></div>
-              <div class="steam"></div>
-              <div class="steam"></div>
-            </div>
-            <div class="cup"></div>
+    <!-- CUP fully filled + steam always on -->
+    <div class="tray-wrap">
+      <div class="cup-stage">
+        <div class="cup-column">
+          <div class="steam-row">
+            <div class="steam"></div>
+            <div class="steam"></div>
+            <div class="steam"></div>
           </div>
+          <div class="cup"></div>
         </div>
-        <div class="tray"></div>
-        <div class="tray-base"></div>
       </div>
+      <div class="tray"></div>
+      <div class="tray-base"></div>
+    </div>
 
-      <!-- BREW ANOTHER BUTTON -->
-      <div class="back-wrap">
-        <a href="/" class="back-btn">⟵ BREW ANOTHER</a>
+    <!-- BREW ANOTHER BUTTON -->
+    <div class="back-wrap">
+      <a href="/" class="back-btn">⟵ BREW ANOTHER</a>
+    </div>
+
+    <!-- STATUS BAR -->
+    <div class="status-bar">
+      <div class="status-item">
+        <div class="status-dot g"></div>
+        WATER OK
       </div>
-
-      <!-- STATUS BAR -->
-      <div class="status-bar">
-        <div class="status-item">
-          <div class="status-dot g"></div>
-          WATER OK
-        </div>
-        <div class="status-item">
-          <div class="status-dot o"></div>
-          BEANS OK
-        </div>
-        <div class="status-item">
-          <div class="status-dot g"></div>
-          MILK OK
-        </div>
+      <div class="status-item">
+        <div class="status-dot o"></div>
+        BEANS OK
+      </div>
+      <div class="status-item">
+        <div class="status-dot g"></div>
+        MILK OK
       </div>
     </div>
-    <!-- /.machine -->
-  </body>
+  </div>
+  <!-- /.machine -->
+</body>
+
 </html>

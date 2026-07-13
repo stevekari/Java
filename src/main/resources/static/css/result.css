@@ -9,6 +9,7 @@
   --green-led: #39ff14;
   --red-led: #ff2a2a;
 }
+
 *,
 *::before,
 *::after {
@@ -23,18 +24,14 @@ body {
   background-image:
     radial-gradient(ellipse at 20% 20%, #1e1a14 0%, transparent 60%),
     radial-gradient(ellipse at 80% 80%, #1a1416 0%, transparent 60%),
-    repeating-linear-gradient(
-      0deg,
+    repeating-linear-gradient(0deg,
       transparent,
       transparent 39px,
-      rgba(255, 255, 255, 0.015) 40px
-    ),
-    repeating-linear-gradient(
-      90deg,
+      rgba(255, 255, 255, 0.015) 40px),
+    repeating-linear-gradient(90deg,
       transparent,
       transparent 39px,
-      rgba(255, 255, 255, 0.015) 40px
-    );
+      rgba(255, 255, 255, 0.015) 40px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,6 +50,7 @@ h1.brand {
     2px 2px 0 rgba(0, 0, 0, 0.6);
   margin-bottom: 28px;
 }
+
 h1.brand span {
   color: var(--accent);
 }
@@ -60,12 +58,10 @@ h1.brand span {
 /* ── MACHINE ── */
 .machine {
   width: min(480px, 96vw);
-  background: linear-gradient(
-    160deg,
-    var(--steel-light) 0%,
-    var(--steel) 40%,
-    #1c1c20 100%
-  );
+  background: linear-gradient(160deg,
+      var(--steel-light) 0%,
+      var(--steel) 40%,
+      #1c1c20 100%);
   border-radius: 28px 28px 18px 18px;
   border: 2px solid #555;
   box-shadow:
@@ -77,16 +73,15 @@ h1.brand span {
   position: relative;
   overflow: hidden;
 }
+
 .machine::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    105deg,
-    rgba(255, 255, 255, 0.06) 0%,
-    transparent 50%,
-    rgba(0, 0, 0, 0.1) 100%
-  );
+  background: linear-gradient(105deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.1) 100%);
   border-radius: inherit;
   pointer-events: none;
   z-index: 10;
@@ -103,6 +98,7 @@ h1.brand span {
   border-bottom: 2px solid #222;
   position: relative;
 }
+
 .machine-top::after {
   content: "";
   position: absolute;
@@ -113,6 +109,7 @@ h1.brand span {
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
   opacity: 0.6;
 }
+
 .logo-plate {
   font-family: "Bebas Neue", sans-serif;
   font-size: 1.4rem;
@@ -127,42 +124,52 @@ h1.brand span {
     0 2px 4px rgba(0, 0, 0, 0.4);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
 }
+
 .leds {
   display: flex;
   gap: 8px;
   align-items: center;
 }
+
 .led {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.4);
 }
+
 .led.green {
   background: var(--green-led);
   box-shadow: 0 0 10px var(--green-led);
   animation: pulse-strong 1.5s infinite;
 }
+
 .led.amber {
   background: var(--accent);
   box-shadow: 0 0 8px var(--accent);
   animation: pulse-led 3s infinite;
 }
+
 @keyframes pulse-led {
+
   0%,
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.45;
   }
 }
+
 @keyframes pulse-strong {
+
   0%,
   100% {
     opacity: 1;
     box-shadow: 0 0 14px var(--green-led);
   }
+
   50% {
     opacity: 0.7;
     box-shadow: 0 0 4px var(--green-led);
@@ -179,20 +186,20 @@ h1.brand span {
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
   position: relative;
 }
+
 .screen-wrap::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(57, 255, 20, 0.025) 0px,
-    rgba(57, 255, 20, 0.025) 1px,
-    transparent 1px,
-    transparent 3px
-  );
+  background: repeating-linear-gradient(0deg,
+      rgba(57, 255, 20, 0.025) 0px,
+      rgba(57, 255, 20, 0.025) 1px,
+      transparent 1px,
+      transparent 3px);
   border-radius: inherit;
   pointer-events: none;
 }
+
 .screen-label {
   font-family: "Share Tech Mono", monospace;
   font-size: 0.8rem;
@@ -219,27 +226,33 @@ h1.brand span {
     type-out 1.4s steps(40, end) 0.3s forwards,
     blink-caret 0.8s step-end infinite;
 }
+
 /* we use a JS-measured width trick — fallback via max-width */
 .screen-result {
   max-width: 100%;
 }
+
 @keyframes type-out {
   to {
     width: 100%;
   }
 }
+
 @keyframes blink-caret {
+
   0%,
   100% {
     border-color: var(--green-led);
   }
+
   50% {
     border-color: transparent;
   }
 }
 
 /* price line */
-.screen-price {
+.screen-price,
+.screen-text {
   font-family: "Share Tech Mono", monospace;
   font-size: 1.15rem;
   color: var(--accent);
@@ -249,6 +262,7 @@ h1.brand span {
   opacity: 0;
   animation: fade-in 0.5s ease 1.8s forwards;
 }
+
 @keyframes fade-in {
   to {
     opacity: 1;
@@ -261,6 +275,7 @@ h1.brand span {
   justify-content: space-between;
   padding: 10px 22px;
 }
+
 .rivet {
   width: 10px;
   height: 10px;
@@ -279,6 +294,7 @@ h1.brand span {
   align-items: center;
   margin: 10px 0 0;
 }
+
 .spout-head {
   width: 70px;
   height: 20px;
@@ -288,6 +304,7 @@ h1.brand span {
   border-bottom: none;
   position: relative;
 }
+
 .spout-head::after {
   content: "";
   position: absolute;
@@ -299,6 +316,7 @@ h1.brand span {
   background: #2a2a2e;
   border-radius: 0 0 4px 4px;
 }
+
 .spout-neck {
   width: 22px;
   height: 30px;
@@ -311,6 +329,7 @@ h1.brand span {
 .tray-wrap {
   margin: 0 28px 20px;
 }
+
 .cup-stage {
   height: 78px;
   display: flex;
@@ -318,11 +337,13 @@ h1.brand span {
   justify-content: center;
   padding-bottom: 4px;
 }
+
 .cup-column {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .steam-row {
   display: flex;
   gap: 10px;
@@ -330,6 +351,7 @@ h1.brand span {
   align-items: flex-end;
   margin-bottom: -2px;
 }
+
 .steam {
   width: 4px;
   height: 28px;
@@ -338,28 +360,35 @@ h1.brand span {
   filter: blur(3px);
   animation: steam-loop 2s ease-in-out infinite;
 }
+
 .steam:nth-child(2) {
   height: 36px;
   animation-delay: 0.4s;
 }
+
 .steam:nth-child(3) {
   animation-delay: 0.8s;
 }
+
 @keyframes steam-loop {
+
   0%,
   100% {
     opacity: 0;
     transform: translateY(0);
   }
+
   30% {
     opacity: 0.7;
     transform: translateY(-8px);
   }
+
   70% {
     opacity: 0.3;
     transform: translateY(-20px);
   }
 }
+
 .cup {
   width: 54px;
   height: 54px;
@@ -369,6 +398,7 @@ h1.brand span {
   position: relative;
   animation: cup-settle 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
 }
+
 .cup::before {
   content: "";
   position: absolute;
@@ -379,6 +409,7 @@ h1.brand span {
   background: rgba(255, 255, 255, 0.22);
   clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
 }
+
 /* coffee fill inside cup */
 .cup::after {
   content: "";
@@ -391,22 +422,26 @@ h1.brand span {
   border-radius: 50% 50% 0 0;
   animation: coffee-fill 1s ease 0.4s both;
 }
+
 @keyframes cup-settle {
   from {
     transform: translateY(20px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
   }
 }
+
 @keyframes coffee-fill {
   from {
     transform: scaleY(0);
     transform-origin: bottom;
     opacity: 0;
   }
+
   to {
     transform: scaleY(1);
     transform-origin: bottom;
@@ -424,18 +459,18 @@ h1.brand span {
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
   position: relative;
 }
+
 .tray::after {
   content: "";
   position: absolute;
   inset: 2px 8px;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 6px,
-    rgba(0, 0, 0, 0.2) 7px
-  );
+  background: repeating-linear-gradient(90deg,
+      transparent,
+      transparent 6px,
+      rgba(0, 0, 0, 0.2) 7px);
   border-radius: 2px;
 }
+
 .tray-base {
   height: 6px;
   background: linear-gradient(180deg, #3a3a3a 0%, #222 100%);
@@ -451,6 +486,7 @@ h1.brand span {
   justify-content: center;
   margin: 0 28px 22px;
 }
+
 .back-btn {
   font-family: "Bebas Neue", sans-serif;
   font-size: 1rem;
@@ -468,6 +504,7 @@ h1.brand span {
     color 0.2s,
     box-shadow 0.2s;
 }
+
 .back-btn:hover {
   border-color: var(--accent);
   color: var(--accent);
@@ -484,6 +521,7 @@ h1.brand span {
   border: 1px solid #333;
   border-radius: 6px;
 }
+
 .status-item {
   display: flex;
   align-items: center;
@@ -494,16 +532,19 @@ h1.brand span {
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
+
 .status-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
 }
+
 .status-dot.g {
   background: var(--green-led);
   box-shadow: 0 0 6px var(--green-led);
   animation: pulse-led 2.5s infinite;
 }
+
 .status-dot.o {
   background: var(--accent);
   box-shadow: 0 0 6px var(--accent);
